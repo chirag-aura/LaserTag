@@ -1,4 +1,4 @@
-import { QuestSchema } from "../models/questModel";
+import { QuestSchema } from "../models/questModel.js";
 import mongoose from "mongoose";
 
 const Quest = mongoose.model('Quest', QuestSchema);

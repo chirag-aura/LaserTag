@@ -1,6 +1,6 @@
 import express from "express";
-import playerRoutes from "./playerRoutes";
-import questRoutes from "./questRoutes";
+import playerRoutes from "./playerRoutes.js";
+import questRoutes from "./questRoutes.js";
 
 const router = express.Router();
 

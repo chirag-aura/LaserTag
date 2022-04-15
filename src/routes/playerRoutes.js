@@ -1,5 +1,5 @@
 import express from "express";
-import { playerCreate, playerJoin, playerClose, playerEvent, playerLeave, playerProperties } from "../controllers/playerController";
+import { playerCreate, playerJoin, playerClose, playerEvent, playerLeave, playerProperties } from "../controllers/playerController.js";
 
 const playerRoutes = express.Router();
 
