@@ -2,7 +2,7 @@ import app from "./app.js";
 //import mongoose from "mongoose";
 
 //router(app);
-const port = process.env.port || 3000;
+const port = process.env.port;
 app
     .listen(port, () => console.log(`Run on the port ${port}`))
     .on('error', (err) => {
