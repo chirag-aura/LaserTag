@@ -8,9 +8,9 @@ export const addQuest = (req, res) =>{
     console.log(newQuest)
     newQuest.save((err, quest) => {
         if(err){
-            res.status(400).send(err);
+            res.status(400).send({status:'false',message:"error", error:err});
         } else {
-            res.status(200).send(quest);
+            res.status(200).send({status:'true',message:"data added successfully", data:quest});
         }
     })
 }
@@ -18,8 +18,8 @@ export const addQuest = (req, res) =>{
 export const getAllQuest = (req, res) =>{
     Quest.find({}, (err, quest)=>{
         if(err){
-            res.send(err);
+            res.send({status:'false',message:"error", error:err});
         }
-        res.status(200).json(quest);
+        res.status(200).json({status:'true',message:"success", data:quest});
     })
 }
