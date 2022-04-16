@@ -7,12 +7,16 @@ export const PlayerSchema = new Schema({
         unique:true,
         required:true
     },
+    roomId:{
+        type:String,
+        required:true
+    },
     score:{
         type:Number,
         required:true
     },
     battery:{
-        type:Number,
+        type:umber,
         required:true
     }
 })
