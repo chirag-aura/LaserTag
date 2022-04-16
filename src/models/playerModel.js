@@ -16,7 +16,7 @@ export const PlayerSchema = new Schema({
         required:true
     },
     battery:{
-        type:umber,
+        type:Number,
         required:true
     }
 })
