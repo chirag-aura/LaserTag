@@ -18,6 +18,10 @@ export const PlayerSchema = new Schema({
     battery:{
         type:Number,
         required:true
+    },
+    team:{
+        type:Number,
+        required:true
     }
 })
 
