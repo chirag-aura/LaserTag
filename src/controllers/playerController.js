@@ -52,13 +52,13 @@ export const playerProperties = async (req, res) => {
 }
 
 export const addPlayerInfo = async (req, res) => {
-    User.findByIdAndUpdate(user_id, { name: 'Gourav' },
-        function (err, docs) {
+    Player.findByIdAndUpdate(req.body.playerId, { score: 0 },
+        function (err, player) {
             if (err) {
-                console.log(err)
+                res.send({ status: 'false', message: "error", error: err });
             }
             else {
-                console.log("Updated User : ", docs);
+                res.status(200).json({ status: 'true', message: "success", data: player });
             }
         });
 }
