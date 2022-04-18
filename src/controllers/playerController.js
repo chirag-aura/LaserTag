@@ -25,8 +25,8 @@ export const playerJoin = async (req, res) => {
     let defaltplayer = {
         playerId: req.body.UserId,
         roomId: req.body.GameId,
-        score:0,
-        battery:0,
+        score: 0,
+        battery: 0,
     }
     let newPlayer = new Player(defaltplayer);
     console.log(newPlayer)
@@ -34,7 +34,7 @@ export const playerJoin = async (req, res) => {
         if (err) {
             res.status(400).send({ status: 'false', message: "error", error: err });
         } else {
-            res.status(200).send({ "ResultCode": 0, message: "data added successfully"});
+            res.status(200).send({ "ResultCode": 0, message: "data added successfully" });
         }
     })
 }
@@ -52,15 +52,42 @@ export const playerProperties = async (req, res) => {
 }
 
 export const addPlayerInfo = async (req, res) => {
-    Player.findByIdAndUpdate(req.body.playerId, { score: 10 },
-        function (err, player) {
-            if (err) {
-                res.status(400).send({ status: 'false', message: "error", error: err });
-            }
-            else {
-                res.status(200).json({ status: 'true', message: "success", data: player });
-            }
-        });
+    if (req.body.battery == -1) {
+        console.log("score update")
+        Player.findOneAndUpdate({ playerId: req.body.playerId }, { score: req.body.score },
+            function (err, player) {
+                if (err) {
+                    res.status(400).send({ status: 'false', message: "error", error: err });
+                }
+                else {
+                    res.status(200).json({ status: 'true', message: "success", data: player });
+                }
+            });
+    }
+    else if(req.body.score == -1){
+        console.log("battery update")
+        Player.findOneAndUpdate({ playerId: req.body.playerId }, { battery: req.body.battery },
+            function (err, player) {
+                if (err) {
+                    res.status(400).send({ status: 'false', message: "error", error: err });
+                }
+                else {
+                    res.status(200).json({ status: 'true', message: "success", data: player });
+                }
+            });
+    }
+    else{
+        console.log("both update")
+        Player.findOneAndUpdate({ playerId: req.body.playerId }, { battery: req.body.battery, score:req.body.score },
+            function (err, player) {
+                if (err) {
+                    res.status(400).send({ status: 'false', message: "error", error: err });
+                }
+                else {
+                    res.status(200).json({ status: 'true', message: "success", data: player });
+                }
+            });
+    }
 }
 
 export const getPlayerInfo = async (req, res) => {
