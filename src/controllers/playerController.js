@@ -55,7 +55,7 @@ export const addPlayerInfo = async (req, res) => {
     Player.findByIdAndUpdate(req.body.playerId, { score: 0 },
         function (err, player) {
             if (err) {
-                res.send({ status: 'false', message: "error", error: err });
+                resstatus(400).send({ status: 'false', message: "error", error: err });
             }
             else {
                 res.status(200).json({ status: 'true', message: "success", data: player });
