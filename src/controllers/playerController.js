@@ -52,7 +52,7 @@ export const playerProperties = async (req, res) => {
 }
 
 export const addPlayerInfo = async (req, res) => {
-    Player.findByIdAndUpdate(req.body.playerId, { score: 0 },
+    Player.findByIdAndUpdate(req.body.playerId, { score: 10 },
         function (err, player) {
             if (err) {
                 resstatus(400).send({ status: 'false', message: "error", error: err });
