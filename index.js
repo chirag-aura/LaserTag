@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
     socket.emit("success_connection", "connected");
     socket.on('gameInit', () => {
         console.log("game started")
-        socket.emit('startGame', 'start your game')
+        socket.broadcast.emit('startGame', 'start your game')
     })
 });
 
