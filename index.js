@@ -13,7 +13,8 @@ const io = new Server(httpServer, {
 });
 
 io.on('connection', (socket) => {
-    console.log("connection establish") 
+    console.log("connection establish");
+    socket.emit("success_connection", "connected");
     socket.on('gameInit', () => {
         console.log("game started")
         socket.emit('startGame', 'start your game')
