@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 export const QuestSchema = new Schema({
     questName:{
         type:String,
-        unique:true,
         required:true
     },
     roomName:{
