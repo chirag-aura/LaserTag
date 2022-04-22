@@ -48,7 +48,7 @@ export const addRoom = (req, res) =>{
         if(err){
             res.status(400).send({status:'false',message:"error", error:err});
         } else {
-            res.status(200).send({status:'true',message:"data added successfully", data:room});
+            res.status(200).send({status:'true',message:"data added successfully!", data:room});
         }
     })
 }
