@@ -1,7 +1,9 @@
 import { PlayerSchema } from "../models/playerModel.js";
+import { RoomSchema } from "../models/roomModel.js";
 import mongoose from "mongoose";
 
 const Player = mongoose.model('Player', PlayerSchema);
+const Room = mongoose.model('Room', RoomSchema)
 
 export const playerClose = async (req, res) => {
     console.log('Player Close');
@@ -54,39 +56,61 @@ export const playerProperties = async (req, res) => {
 export const addPlayerInfo = async (req, res) => {
     if (req.body.battery == -1) {
         console.log("score update")
-        Player.findOneAndUpdate({ playerId: req.body.playerId }, { score: req.body.score },
-            function (err, player) {
+        Room.updateOne(
+            { "players.playerId":req.body.playerId},
+            { 
+                $set: {
+                    "players.$.score": req.body.score,
+                }
+            },
+            function (err, Room) {
                 if (err) {
                     res.status(400).send({ status: 'false', message: "error", error: err });
                 }
                 else {
-                    res.status(200).json({ status: 'true', message: "success", data: player });
+                    res.status(200).json({ status: 'true', message: "success", data: Room});
                 }
-            });
+            }
+        )
     }
     else if(req.body.score == -1){
         console.log("battery update")
-        Player.findOneAndUpdate({ playerId: req.body.playerId }, { battery: req.body.battery },
-            function (err, player) {
+        Room.updateOne(
+            { "players.playerId":req.body.playerId},
+            { 
+                $set: {
+                    "players.$.battery": req.body.battery
+                }
+            },
+            function (err, Room) {
                 if (err) {
                     res.status(400).send({ status: 'false', message: "error", error: err });
                 }
                 else {
-                    res.status(200).json({ status: 'true', message: "success", data: player });
+                    res.status(200).json({ status: 'true', message: "success", data: Room});
                 }
-            });
+            }
+        )
     }
     else{
         console.log("both update")
-        Player.findOneAndUpdate({ playerId: req.body.playerId }, { battery: req.body.battery, score:req.body.score },
-            function (err, player) {
+        Room.updateOne(
+            { "players.playerId":req.body.playerId},
+            { 
+                $set: {
+                    "players.$.score": req.body.score,
+                    "players.$.battery": req.body.battery
+                }
+            },
+            function (err, Room) {
                 if (err) {
                     res.status(400).send({ status: 'false', message: "error", error: err });
                 }
                 else {
-                    res.status(200).json({ status: 'true', message: "success", data: player });
+                    res.status(200).json({ status: 'true', message: "success", data: Room});
                 }
-            });
+            }
+        )
     }
 }
 

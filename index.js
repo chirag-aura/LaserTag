@@ -6,7 +6,7 @@ import { createServer } from "http";
 const port = process.env.PORT || 3000;
 
 const httpServer = createServer(app);
-const io = new Server(httpServer, { 
+export const io = new Server(httpServer, { 
     cors: {
         origin: "*",
     } 
