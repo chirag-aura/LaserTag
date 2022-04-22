@@ -8,9 +8,20 @@ const Room = mongoose.model('Room', RoomSchema)
 export const roomClose = async (req, res) => {
     console.log('Room Close');
     console.log(req.body);
-    Room.deleteOne({ roomId: req.body.GameId });
-
-    res.status(200).send({ "ResultCode": 0, "Message": "OK" })
+    Room.remove(
+        { roomId: req.body.GameId },
+        {
+          justOne: true,
+        },
+        function (err, Room) {
+            if (err) {
+                res.status(400).send({ status: 'false', message: "error", error: err });
+            }
+            else {
+                res.status(200).json({ "ResultCode": 0, "Message": "OK" });
+            }
+        }
+     );
 }
 
 export const playerCreate = async (req, res) => {
@@ -67,10 +78,10 @@ export const addPlayerInfo = async (req, res) => {
             },
             function (err, Room) {
                 if (err) {
-                    res.status(400).send({ status: 'false', message: "error", error: err });
+                    res.status(400).send({ "ResultCode": 0, "Message": "OK" });
                 }
                 else {
-                    res.status(200).json({ status: 'true', message: "success", data: Room});
+                    res.status(200).json({ "ResultCode": 0, "Message": "OK" });
                 }
             }
         )
@@ -86,10 +97,10 @@ export const addPlayerInfo = async (req, res) => {
             },
             function (err, Room) {
                 if (err) {
-                    res.status(400).send({ status: 'false', message: "error", error: err });
+                    res.status(400).send({ "ResultCode": 0, "Message": "OK" });
                 }
                 else {
-                    res.status(200).json({ status: 'true', message: "success", data: Room});
+                    res.status(200).json({ "ResultCode": 0, "Message": "OK" });
                 }
             }
         )
@@ -106,10 +117,10 @@ export const addPlayerInfo = async (req, res) => {
             },
             function (err, Room) {
                 if (err) {
-                    res.status(400).send({ status: 'false', message: "error", error: err });
+                    res.status(400).send({ "ResultCode": 0, "Message": "OK" });
                 }
                 else {
-                    res.status(200).json({ status: 'true', message: "success", data: Room});
+                    res.status(200).json({ "ResultCode": 0, "Message": "OK" });
                 }
             }
         )
