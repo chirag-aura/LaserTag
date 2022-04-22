@@ -1,5 +1,5 @@
 import express from "express";
-import { playerCreate, playerJoin, playerClose, playerEvent, playerLeave, playerProperties, addPlayerInfo, getPlayerInfo } from "../controllers/playerController.js";
+import { playerCreate, playerJoin, roomClose, playerEvent, playerLeave, playerProperties, addPlayerInfo, getPlayerInfo } from "../controllers/playerController.js";
 import { addRoom, addPlayer } from "../controllers/roomController.js";
 
 const playerRoutes = express.Router();
@@ -8,7 +8,7 @@ playerRoutes.post('/create', addRoom);
 
 playerRoutes.post('/join', addPlayer);
 
-playerRoutes.post('/close', playerClose);
+playerRoutes.post('/close', roomClose);
 
 playerRoutes.post('/event', playerEvent);
 

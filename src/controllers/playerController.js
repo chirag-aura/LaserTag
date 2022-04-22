@@ -5,9 +5,11 @@ import mongoose from "mongoose";
 const Player = mongoose.model('Player', PlayerSchema);
 const Room = mongoose.model('Room', RoomSchema)
 
-export const playerClose = async (req, res) => {
-    console.log('Player Close');
+export const roomClose = async (req, res) => {
+    console.log('Room Close');
     console.log(req.body);
+    Room.deleteOne({ roomId: req.body.GameId });
+
     res.status(200).send({ "ResultCode": 0, "Message": "OK" })
 }
 
