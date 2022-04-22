@@ -15,9 +15,9 @@ export const io = new Server(httpServer, {
 io.on('connection', (socket) => {
     console.log("connection establish");
     socket.emit("success_connection", "connected");
-    socket.on('gameInit', () => {
+    socket.on('gameInit', (arg) => {
         console.log("game started")
-        socket.broadcast.emit('startGame', 'start your game')
+        socket.broadcast.emit('startGame', arg)
     })
 });
 
