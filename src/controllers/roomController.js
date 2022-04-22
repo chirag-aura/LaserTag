@@ -9,7 +9,7 @@ export const addRoom = (req, res) =>{
         players: [
             {
                 playerId: req.body.UserId,
-                playerName: req.body.NickName,
+                playerName: req.body.Nickname,
                 score:0,
                 battery:0,
                 team:0,
