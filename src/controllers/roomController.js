@@ -60,7 +60,9 @@ export const addPlayer = (req, res) =>{
             $push: {
                 "players": {
                     playerId: req.body.UserId,
-                    playerName: req.body.NickName
+                    playerName: req.body.NickName,
+                    score:0,
+                    battery:0
                 }
             }
         },
