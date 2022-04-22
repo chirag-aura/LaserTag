@@ -54,6 +54,7 @@ export const addRoom = (req, res) =>{
 }
 
 export const addPlayer = (req, res) =>{
+    console.log(req.body)
     Room.updateOne(
         { roomId:req.body.GameId},
         { 
