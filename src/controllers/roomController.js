@@ -12,7 +12,7 @@ export const addRoom = (req, res) =>{
                 playerName: req.body.Nickname,
                 score:0,
                 battery:0,
-                team:0,
+                team:2,
             }
         ] 
     }
@@ -36,7 +36,8 @@ export const addPlayer = (req, res) =>{
                     playerId: req.body.UserId,
                     playerName: req.body.Nickname,
                     score:0,
-                    battery:0
+                    battery:0,
+                    team:1,
                 }
             }
         },
